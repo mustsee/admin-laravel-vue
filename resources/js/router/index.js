@@ -9,10 +9,10 @@ import Monuments from './../components/Monuments';
 
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/users', component: Users },
-    { path: '/users/create', component: CreateUser },
-    { path: '/monuments', component: Monuments }
+    { path: '/', component: Home, name: 'Home'},
+    { path: '/users', component: Users, name: 'Users'},
+    { path: '/users/create', component: CreateUser, name: 'Create User'},
+    { path: '/monuments', component: Monuments, name: 'Monuments'}
 ];
 
 const router = new VueRouter({

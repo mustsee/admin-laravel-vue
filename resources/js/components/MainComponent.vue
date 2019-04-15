@@ -5,7 +5,7 @@
                 fixed
                 app
         >
-            <v-list dense>
+            <v-list>
                 <v-list-tile to="/">
                     <v-list-tile-action>
                         <v-icon>home</v-icon>
@@ -34,10 +34,12 @@
         </v-navigation-drawer>
         <v-toolbar color="indigo" dark fixed app>
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>Application</v-toolbar-title>
+            <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
         </v-toolbar>
         <v-content>
-            <router-view/>
+            <transition>
+                <router-view/>
+            </transition>
         </v-content>
         <v-footer color="indigo" app>
             <span class="white--text">&copy; 2019</span>
