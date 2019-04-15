@@ -1,8 +1,6 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <v-container fluid fill-height>
-        <v-layout
-                justify-center
-        >
+        <v-layout justify-center>
             <v-flex xs12 md8 lg6 class="mt-4">
                 <v-form
                         ref="form"

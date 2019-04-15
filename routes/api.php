@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware(['auth:api'])->group(function () {
     Route::resource('/users', 'UserController')->only([
         'index', 'store', 'destroy'
-    ]);;
+    ]);
+
+    Route::resource('/languages', 'LanguageController')->only([
+        'index', 'store', 'destroy'
+    ]);
 });
 

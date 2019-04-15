@@ -3,22 +3,21 @@
         <v-layout justify-center>
             <v-flex>
                 <div class="text-xs-right mb-4">
-                    <v-btn dark color="amber" to="/users/create">
+                    <v-btn dark color="green" to="/languages/create">
                         <v-icon dark>add</v-icon>
                     </v-btn>
                 </div>
                 <v-data-table
                         :headers="headers"
-                        :items="users"
+                        :items="languages"
                         class="elevation-1"
                 >
                     <template v-slot:items="props">
                         <td class="text-xs-left">{{ props.item.id }}</td>
-                        <td class="text-xs-left">{{ props.item.name }}</td>
-                        <td class="text-xs-left">{{ props.item.email }}</td>
+                        <td class="text-xs-left">{{ props.item.code }}</td>
                         <td class="text-xs-left">{{ props.item.created_at }}</td>
                         <td class="text-xs-left">
-                            <v-icon small @click="deleteUser(props.item.id)">
+                            <v-icon small @click="removeLanguage(props.item.id)">
                                 delete
                             </v-icon>
                         </td>
@@ -38,28 +37,27 @@
                         align: 'left',
                         value: 'id'
                     },
-                    { text: 'Name', value: 'name' },
-                    { text: 'Email', value: 'email' },
+                    { text: 'Code', value: 'code' },
                     { text: 'Creation date', value: 'created_at' },
                     { text: 'Actions', value: 'name', sortable: false },
                 ],
-                users: []
+                languages: []
             }
         },
         methods: {
-            getUsers() {
-                axios.get('api/users').then(res => {
-                    this.users = res.data;
+            getLanguages() {
+                axios.get('api/languages').then(res => {
+                    this.languages = res.data;
                 });
             },
-            deleteUser(id) {
-                axios.delete(`api/users/${id}`).then(() => {
-                    this.getUsers();
+            removeLanguage(id) {
+                axios.delete(`api/languages/${id}`).then(() => {
+                    this.getLanguages();
                 });
             }
         },
         mounted() {
-            this.getUsers();
+            this.getLanguages();
         }
     }
 </script>
