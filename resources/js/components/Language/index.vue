@@ -25,7 +25,8 @@
                 </v-data-table>
             </v-flex>
         </v-layout>
-    </v-container></template>
+    </v-container>
+</template>
 
 <script>
     export default {

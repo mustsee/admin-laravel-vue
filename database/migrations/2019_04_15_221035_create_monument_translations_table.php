@@ -17,10 +17,11 @@ class CreateMonumentTranslationsTable extends Migration
             $table->increments('id');
             $table->integer('monument_id')->unsigned();
             $table->integer('language_id')->unsigned();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->longText('content');
             $table->string('city');
             $table->string('country');
+            $table->unique(['monument_id', 'language_id'], 'unique_monument_language');
             $table->timestamps();
         });
 

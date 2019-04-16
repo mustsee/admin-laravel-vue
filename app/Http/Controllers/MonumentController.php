@@ -15,6 +15,8 @@ class MonumentController extends Controller
      */
     public function index()
     {
+        $monuments = Monument::with('monumentTranslations.language')->get();
+        return response()->json($monuments);
         return response()->json(Monument::all());
     }
 
