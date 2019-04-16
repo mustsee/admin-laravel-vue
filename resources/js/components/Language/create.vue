@@ -18,7 +18,7 @@
                     <v-btn
                             dark
                             class="my-2"
-                            color="amber"
+                            color="green"
                             @click="validate"
                     >
                         Create

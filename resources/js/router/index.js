@@ -8,7 +8,8 @@ import CreateUser from './../components/User/create';
 import Languages from '../components/Language';
 import CreateLanguage from '../components/Language/create';
 
-import Monuments from './../components/Monuments';
+import Monuments from './../components/Monument';
+import EditMonument from './../components/Monument/edit';
 
 
 const routes = [
@@ -17,7 +18,9 @@ const routes = [
     { path: '/users/create', component: CreateUser, name: 'Create User'},
     { path: '/languages', component: Languages, name: 'Languages'},
     { path: '/languages/create', component: CreateLanguage, name: 'Create Language'},
-    { path: '/monuments', component: Monuments, name: 'Monuments'}
+    { path: '/monuments', component: Monuments, name: 'Monuments'},
+    { path: '/monuments/edit', component: EditMonument, name: 'Create Monument'},
+    { path: '/monuments/:id/edit', component: EditMonument, name: 'Update Monument'},
 ];
 
 const router = new VueRouter({

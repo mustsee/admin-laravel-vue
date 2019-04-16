@@ -21,5 +21,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::resource('/languages', 'LanguageController')->only([
         'index', 'store', 'destroy'
     ]);
+
+    Route::resource('/monuments', 'MonumentController')->only([
+        'index', 'store', 'show', 'destroy'
+    ]);
 });
 

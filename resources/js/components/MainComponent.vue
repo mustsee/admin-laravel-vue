@@ -30,7 +30,7 @@
                         <v-list-tile-title>Languages</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile to="monuments">
+                <v-list-tile to="/monuments">
                     <v-list-tile-action>
                         <v-icon>business</v-icon>
                     </v-list-tile-action>
