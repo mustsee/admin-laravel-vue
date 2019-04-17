@@ -1,5 +1,5 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-    <v-container fluid fill-height>
+    <v-container fluid fill-height class="monument-tabs">
         <v-layout justify-center>
             <v-flex>
                 <v-tabs
@@ -50,3 +50,11 @@
         }
     }
 </script>
+
+<style>
+    .monument-tabs {
+        padding-top: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+</style>
