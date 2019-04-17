@@ -22,7 +22,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,21 +50,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if ($id !== 1) {
-            User::destroy($id);
-            return response()->json([
-                'success' => true,
-                'message' => 'Successfully erase user'
-            ]);
-        }
+        User::destroy($id);
         return response()->json([
             'success' => true,
-            'message' => 'Cannot erase super admin'
+            'message' => 'Successfully erase user'
         ]);
+
     }
 }
