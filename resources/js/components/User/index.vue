@@ -53,6 +53,7 @@
                 });
             },
             deleteUser(id) {
+                if (id === 1) return;
                 axios.delete(`api/users/${id}`).then(() => {
                     this.getUsers();
                 });

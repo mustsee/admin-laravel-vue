@@ -55,10 +55,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        if ($id !== 1) {
+            User::destroy($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully erase user'
+            ]);
+        }
         return response()->json([
-           'success' => true,
-           'message' => 'Successfully erase user'
+            'success' => true,
+            'message' => 'Cannot erase super admin'
         ]);
     }
 }
