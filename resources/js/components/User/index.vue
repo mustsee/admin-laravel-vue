@@ -18,9 +18,13 @@
                         <td class="text-xs-left">{{ props.item.email }}</td>
                         <td class="text-xs-left">{{ props.item.created_at }}</td>
                         <td class="text-xs-left">
-                            <v-icon small @click="deleteUser(props.item.id)">
-                                delete
-                            </v-icon>
+                            <modal :id="props.item.id"
+                                   :itemValue="props.item.email"
+                                   itemName="user"
+                                   action="delete"
+                                   @delete="deleteUser"
+                            >
+                            </modal>
                         </td>
                     </template>
                 </v-data-table>
@@ -29,7 +33,12 @@
     </v-container></template>
 
 <script>
+    import Modal from './../elements/modal';
+
     export default {
+        components: {
+            'modal': Modal
+        },
         data () {
             return {
                 headers: [

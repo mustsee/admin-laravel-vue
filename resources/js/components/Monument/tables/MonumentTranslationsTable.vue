@@ -21,9 +21,13 @@
                             <v-icon small @click="updateMonumentTranslation(props.item)">
                                 edit
                             </v-icon>
-                            <v-icon small @click="deleteMonumentTranslation(props.item.id)">
-                                delete
-                            </v-icon>
+                            <modal :id="props.item.id"
+                                   :itemValue="props.item.name"
+                                   itemName="translation of"
+                                   action="delete"
+                                   @delete="deleteMonumentTranslation"
+                            >
+                            </modal>
                         </td>
                     </template>
                 </v-data-table>
@@ -32,7 +36,12 @@
     </v-container></template>
 
 <script>
+    import Modal from './../../elements/modal';
+
     export default {
+        components: {
+            'modal': Modal,
+        },
         data () {
             return {
                 rowsPerPageItems: [5, 10, 15, 25, 50],
