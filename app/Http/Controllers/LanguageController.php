@@ -39,7 +39,10 @@ class LanguageController extends Controller
         ]);
         $language->save();
 
-        return response()->json($language);
+        return response()->json([
+            'message' => 'Successfully created language',
+            'language' => $language
+        ]);
     }
 
     /**
@@ -53,7 +56,7 @@ class LanguageController extends Controller
         Language::destroy($id);
         return response()->json([
             'success' => true,
-            'message' => 'Successfully remove language code'
+            'message' => 'Successfully remove language'
         ]);
     }
 }

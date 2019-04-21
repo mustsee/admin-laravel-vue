@@ -16,6 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all(['id', 'name', 'email', 'created_at']);
+
         return response()->json($user);
     }
 
@@ -44,7 +45,10 @@ class UserController extends Controller
         ]);
         $user->save();
 
-        return response()->json($user);
+        return response()->json([
+            'message' => 'Successfully created user',
+            'user' => $user
+        ]);
     }
 
     /**

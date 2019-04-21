@@ -50,6 +50,8 @@
 </template>
 
 <script>
+    import GStore from './../../store';
+
     export default {
         data: () => ({
             valid: true,
@@ -70,10 +72,13 @@
                     let payload = this.monument;
                     axios.post('api/monuments', {
                         payload
-                    }).then(() => {
+                    }).then((res) => {
+                        GStore.setSnackbar({text: res.data.message, success: true});
+                        GStore.setShowSnackbar(true);
                         this.$router.push('/monuments');
-                    }).catch(err => {
-                        console.log('error', err.message);
+                    }).catch((err) => {
+                        GStore.setSnackbar({text: err.message, success: false});
+                        GStore.setShowSnackbar(true);
                     });
                 }
             },

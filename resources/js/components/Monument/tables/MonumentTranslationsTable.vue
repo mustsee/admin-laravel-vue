@@ -33,7 +33,8 @@
                 </v-data-table>
             </v-flex>
         </v-layout>
-    </v-container></template>
+    </v-container>
+</template>
 
 <script>
     import Modal from './../../elements/modal';

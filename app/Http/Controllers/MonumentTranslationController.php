@@ -52,12 +52,17 @@ class MonumentTranslationController extends Controller
         if (isset($data['id'])) {
             $monumentTranslation = MonumentTranslation::find($data['id']);
             $monumentTranslation->update($objectData);
+            $message = 'Successfully updated translation';
         } else {
             $monumentTranslation = new MonumentTranslation($objectData);
             $monumentTranslation->save();
+            $message = 'Successfully created translation';
         }
 
-        return response()->json($monumentTranslation);
+        return response()->json([
+            'message' => $message,
+            'monumentTranslation' => $monumentTranslation
+        ]);
     }
 
     /**

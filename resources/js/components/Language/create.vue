@@ -33,9 +33,12 @@
                 </v-form>
             </v-flex>
         </v-layout>
-    </v-container></template>
+    </v-container>
+</template>
 
 <script>
+    import GStore from './../../store';
+
     export default {
         data: () => ({
             valid: true,
@@ -45,7 +48,6 @@
                 v => (v && v.length <= 10) || 'Name must be less than 10 characters'
             ],
         }),
-
         methods: {
             validate () {
                 if (this.$refs.form.validate()) {
@@ -54,10 +56,13 @@
                     };
                     axios.post('api/languages', {
                         payload
-                    }).then(() => {
+                    }).then((res) => {
+                        GStore.setSnackbar({text: res.data.message, success: true});
+                        GStore.setShowSnackbar(true);
                         this.$router.push('/languages');
                     }).catch(err => {
-                        console.log('error', err.message);
+                        GStore.setSnackbar({text: err.message, success: false});
+                        GStore.setShowSnackbar(true);
                     });
                 }
             },

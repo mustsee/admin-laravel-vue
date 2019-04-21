@@ -48,6 +48,7 @@
             <transition>
                 <router-view/>
             </transition>
+            <snack/>
         </v-content>
         <v-footer color="indigo" app>
             <span class="white--text">&copy; 2019</span>
@@ -56,7 +57,12 @@
 </template>
 
 <script>
+    import Snack from './../components/elements/snackbar';
+
     export default {
+        components: {
+            'snack': Snack,
+        },
         data: () => ({
             drawer: null
         }),

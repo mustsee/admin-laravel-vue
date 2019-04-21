@@ -25,6 +25,9 @@
                                    @delete="deleteUser"
                             >
                             </modal>
+                            <v-icon small @click="(props.item.id)">
+                                delete
+                            </v-icon>
                         </td>
                     </template>
                 </v-data-table>

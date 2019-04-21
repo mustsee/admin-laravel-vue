@@ -17,7 +17,6 @@ class MonumentController extends Controller
     {
         $monuments = Monument::with('monumentTranslations.language')->get();
         return response()->json($monuments);
-        return response()->json(Monument::all());
     }
 
     /**
@@ -47,12 +46,17 @@ class MonumentController extends Controller
         if (isset($data['id'])) {
             $monument = Monument::find($data['id']);
             $monument->update($objectData);
+            $message = 'Successfully updated monument';
         } else {
             $monument = new Monument($objectData);
             $monument->save();
+            $message = 'Successfully created monument';
         }
 
-        return response()->json($monument);
+        return response()->json([
+            'message' => $message,
+            'monument' => $monument
+        ]);
     }
 
     /**
