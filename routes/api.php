@@ -11,22 +11,23 @@
 |
 */
 
+Route::get('/monuments/translations', 'MonumentTranslationController@index');
+Route::post('/monuments/translations', 'MonumentTranslationController@store');
+Route::get('/monuments/translations/{id}', 'MonumentTranslationController@show');
+Route::delete('/monuments/translations/{id}', 'MonumentTranslationController@destroy');
+
+Route::resource('/users', 'UserController')->only([
+    'index', 'store', 'destroy'
+]);
+
+Route::resource('/languages', 'LanguageController')->only([
+    'index', 'store', 'destroy'
+]);
+
+Route::resource('/monuments', 'MonumentController')->only([
+    'index', 'store', 'show', 'destroy'
+]);
+
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/monuments/translations', 'MonumentTranslationController@index');
-    Route::post('/monuments/translations', 'MonumentTranslationController@store');
-    Route::get('/monuments/translations/{id}', 'MonumentTranslationController@show');
-    Route::delete('/monuments/translations/{id}', 'MonumentTranslationController@destroy');
 
-    Route::resource('/users', 'UserController')->only([
-        'index', 'store', 'destroy'
-    ]);
-
-    Route::resource('/languages', 'LanguageController')->only([
-        'index', 'store', 'destroy'
-    ]);
-
-    Route::resource('/monuments', 'MonumentController')->only([
-        'index', 'store', 'show', 'destroy'
-    ]);
 });
-
