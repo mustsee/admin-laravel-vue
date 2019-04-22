@@ -52,6 +52,7 @@
 
 <script>
     import GStore from './../../store';
+    import { cacheName, usersAPI } from './../../helpers';
 
     export default {
         data: () => ({
@@ -81,9 +82,10 @@
                         email: this.email,
                         password: this.password,
                     };
-                    axios.post('api/users', {
+                    axios.post(usersAPI, {
                         payload
                     }).then((res) => {
+                        caches.open(cacheName).then(cache => cache.delete(usersAPI));
                         GStore.setSnackbar({text: res.data.message, success: true});
                         GStore.setShowSnackbar(true);
                         this.$router.push('/users');

@@ -34,6 +34,7 @@
 
 <script>
     import Modal from './../elements/modal';
+    import { cacheName, defaultOptions, usersAPI } from './../../helpers';
 
     export default {
         components: {
@@ -56,19 +57,42 @@
             }
         },
         methods: {
-            getUsers() {
-                axios.get('api/users').then(res => {
-                    this.users = res.data;
+            CheckUsersCache() {
+                caches.open(cacheName).then(cache => {
+                    cache.match(usersAPI).then(item => {
+                        if (!item) {
+                            this.getUsers();
+                        } else {
+                            item.json().then(body => { this.users = body })
+                        }
+                    });
                 });
             },
+            getUsers() {
+                fetch(usersAPI, defaultOptions).then(res => {
+                    let resClone = res.clone();
+                    if (res.status === 200) {
+                        caches.open(cacheName).then(cache => {
+                            cache.put(usersAPI, res);
+                        });
+                        resClone.json().then(body => {
+                            this.users = body;
+                        });
+                    } else {
+                        console.log('error while fetching api/users');
+                    }
+                });
+
+            },
             deleteUser(id) {
-                axios.delete(`api/users/${id}`).then(() => {
+                axios.delete(`${usersAPI}/${id}`).then(() => {
+                    caches.open(cacheName).then(cache => cache.delete(usersAPI));
                     this.getUsers();
                 });
             }
         },
         mounted() {
-            this.getUsers();
+            this.CheckUsersCache();
         }
     }
 </script>
