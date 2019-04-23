@@ -85,7 +85,7 @@
                     axios.post(usersAPI, {
                         payload
                     }).then((res) => {
-                        caches.open(cacheName).then(cache => cache.delete(usersAPI));
+                        // caches.open(cacheName).then(cache => cache.delete(usersAPI));
                         GStore.setSnackbar({text: res.data.message, success: true});
                         GStore.setShowSnackbar(true);
                         this.$router.push('/users');

@@ -82,17 +82,23 @@
                         console.log('error while fetching api/users');
                     }
                 });
-
+            },
+            getUsersAxios() {
+                axios.get(`${usersAPI}`).then((res) => {
+                    this.users = res.data;
+                });
             },
             deleteUser(id) {
                 axios.delete(`${usersAPI}/${id}`).then(() => {
-                    caches.open(cacheName).then(cache => cache.delete(usersAPI));
-                    this.getUsers();
+                    /*caches.open(cacheName).then(cache => cache.delete(usersAPI));
+                    this.getUsers();*/
+                    this.getUsersAxios();
                 });
             }
         },
         mounted() {
-            this.CheckUsersCache();
+            // this.CheckUsersCache();
+            this.getUsersAxios();
         }
     }
 </script>
